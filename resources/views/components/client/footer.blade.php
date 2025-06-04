@@ -2,7 +2,11 @@
     <div class="container px-4 mx-auto sm:px-6 lg:px-14">
         <div class="grid gap-8 md:grid-cols-4">
             <div>
-                <a href="/" wire:navigate class="flex items-center gap-3 mb-3">
+                <a href="/"
+                    @if (!request()->is('/')) wire:navigate @else x-data @click.prevent="
+                    window.history.pushState(null, '', '/');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
+                    class="flex items-center gap-3 mb-3">
                     <img src="<?= asset('assets/client/images/logo.png') ?>" alt="Logo Lunar Store" width="45" />
                     <span class="text-white font-bold text-[20px] text-righteous uppercase">Lunar Store</span>
                 </a>

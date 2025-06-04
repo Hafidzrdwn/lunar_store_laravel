@@ -36,33 +36,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            window.handleHomeClick = function(event) {
-                event.preventDefault();
-
-                const path = window.location.pathname;
-                const hash = window.location.hash;
-
-                if (path === "/" && hash !== "") {
-                    // udah di / tapi ada fragment, scroll ke top aja
-                    window.history.pushState(null, '', '/'); // hapus hash dari URL
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } else if (path === "/" && hash === "") {
-                    // udah di root dan ga ada hash, langsung scroll
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // pindah halaman via SPA
-                    window.livewire.navigate('/', {
-                        scroll: false
-                    });
-                }
-            }
-
             const mobileMenuButton = document.querySelector(".mobileNav button");
             const mobileMenuButtonIcon = document.querySelector(".mobileNav button > i");
             const mobileMenu = document.querySelector(

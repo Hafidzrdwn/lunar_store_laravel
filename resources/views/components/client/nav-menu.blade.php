@@ -6,11 +6,22 @@
 @endphp
 
 <!-- Navigation -->
-<nav class="sticky top-0 z-50 bg-white border-b border-gray-100">
+<nav class="sticky top-0 z-50 bg-white border-b border-gray-100" x-data x-init="$nextTick(() => {
+    if (window.location.hash) {
+        const el = document.querySelector(window.location.hash);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});">
     <div class="container px-4 py-2 mx-auto sm:px-6 lg:px-14">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
-                <a href="/" wire:navigate class="flex items-center gap-3">
+                <a href="/"
+                    @if (!request()->is('/')) wire:navigate @else x-data @click.prevent="
+                    window.history.pushState(null, '', '/');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
+                    class="flex items-center gap-3">
                     <img src="<?= asset('assets/client/images/logo.png') ?>" alt="Logo Lunar Store" width="45" />
                     <span class="text-blue-600 font-bold text-[18px] lunar-text uppercase">Lunar Store</span>
                 </a>
@@ -59,12 +70,22 @@
                         </div>
                     </div>
                 @else
-                    <a href="/" onclick="handleHomeClick(event)"
+                    <a href="/"
+                        @if (!request()->is('/')) wire:navigate @else x-data @click.prevent="
+                        window.history.pushState(null, '', '/');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
                         class="{{ is_active('/') }} transition-colors hover:text-blue-600">Home</a>
-                    <a href="" class="transition-colors hover:text-blue-600">About Us</a>
-                    <a href="/#testimonials" class="text-gray-700 transition-colors hover:text-blue-600">Testimonials</a>
-                    <a href="/#pricing" class="text-gray-700 transition-colors hover:text-blue-600">Pricing</a>
-                    <a href="/#contact" class="text-gray-700 transition-colors hover:text-blue-600">Contact</a>
+                    <a href="{{ route('aboutus') }}"
+                        @if (!request()->is('aboutus')) wire:navigate @else x-data @click.prevent="
+                        window.history.pushState(null, '', '/aboutus');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
+                        class="{{ is_active('aboutus') }} transition-colors hover:text-blue-600">About Us</a>
+                    <a href="/#testimonials" @if (!request()->is('/')) wire:navigate @endif
+                        class="text-gray-700 transition-colors hover:text-blue-600">Testimonials</a>
+                    <a href="/#pricing" @if (!request()->is('/')) wire:navigate @endif
+                        class="text-gray-700 transition-colors hover:text-blue-600">Pricing</a>
+                    <a href="/#contact" @if (!request()->is('/')) wire:navigate @endif
+                        class="text-gray-700 transition-colors hover:text-blue-600">Contact</a>
                     <a href=""
                         class="px-4 py-3 text-white transition-all bg-blue-500 rounded-md hover:bg-blue-600 active:scale-[0.9]">
                         Login Now <i class="ml-1 fas fa-sign-in-alt"></i>
