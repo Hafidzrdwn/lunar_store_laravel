@@ -86,7 +86,7 @@
                         class="text-gray-700 transition-colors hover:text-blue-600">Pricing</a>
                     <a href="/#contact" @if (!request()->is('/')) wire:navigate @endif
                         class="text-gray-700 transition-colors hover:text-blue-600">Contact</a>
-                    <a href=""
+                    <a href="{{ route('login') }}" wire:navigate
                         class="px-4 py-3 text-white transition-all bg-blue-500 rounded-md hover:bg-blue-600 active:scale-[0.9]">
                         Login Now <i class="ml-1 fas fa-sign-in-alt"></i>
                     </a>

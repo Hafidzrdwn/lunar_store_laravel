@@ -23,13 +23,20 @@
 </head>
 
 <body class="min-h-screen bg-white">
+    @php
+        $isAuthPage = request()->is('login') || request()->is('register');
+    @endphp
 
-    <x-client.nav-menu />
+    @if (!$isAuthPage)
+        <x-client.nav-menu />
+    @endif
 
     {{-- Main Content --}}
     {{ $slot }}
 
-    <x-client.footer />
+    @if (!$isAuthPage)
+        <x-client.footer />
+    @endif
 
     @livewireScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

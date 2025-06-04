@@ -77,10 +77,12 @@
                 <h3 class="mb-4 text-lg font-semibold">Authentication</h3>
                 <ul class="space-y-6">
                     <li>
-                        <a href="" class="text-gray-400 transition-colors hover:text-white">Login</a>
+                        <a href="{{ route('login') }}" wire:navigate
+                            class="text-gray-400 transition-colors hover:text-white">Login</a>
                     </li>
                     <li>
-                        <a href="" class="text-gray-400 transition-colors hover:text-white">Register</a>
+                        <a href="{{ route('register') }}" wire:navigate
+                            class="text-gray-400 transition-colors hover:text-white">Register</a>
                     </li>
                 </ul>
             </div>

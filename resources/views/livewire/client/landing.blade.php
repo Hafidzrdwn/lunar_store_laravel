@@ -655,7 +655,7 @@
                     game top-ups, and exclusive digital services—only at Lunar Store! 🚀
                 </p>
                 <div class="flex flex-col justify-center gap-4 sm:flex-row">
-                    <a href=""
+                    <a href="{{ route('login') }}" wire:navigate
                         class="inline-flex items-center px-6 py-3 text-lg font-medium text-blue-600 transition-all bg-white rounded-md hover:bg-blue-50 active:scale-[0.9]">
                         Login and Order Now <i class="ml-2 fas fa-sign-in-alt"></i>
                     </a>
