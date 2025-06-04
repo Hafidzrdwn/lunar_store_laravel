@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Client;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Client\Landing::class)->name('landing');
