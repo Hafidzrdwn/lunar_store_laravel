@@ -14,27 +14,55 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Righteous&display=swap"
         rel="stylesheet">
 
+    @vite('resources/css/app.css')
     @livewireStyles
     <link rel="stylesheet" href="<?= asset('assets/client/css/custom.css') ?>" />
 
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body class="min-h-screen bg-white">
 
-    <x.client.nav-menu />
+    <x-client.nav-menu />
 
     {{-- Main Content --}}
     {{ $slot }}
 
-    <x.client.footer />
+    <x-client.footer />
 
     @livewireScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            window.handleHomeClick = function(event) {
+                event.preventDefault();
+
+                const path = window.location.pathname;
+                const hash = window.location.hash;
+
+                if (path === "/" && hash !== "") {
+                    // udah di / tapi ada fragment, scroll ke top aja
+                    window.history.pushState(null, '', '/'); // hapus hash dari URL
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else if (path === "/" && hash === "") {
+                    // udah di root dan ga ada hash, langsung scroll
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // pindah halaman via SPA
+                    window.livewire.navigate('/', {
+                        scroll: false
+                    });
+                }
+            }
+
             const mobileMenuButton = document.querySelector(".mobileNav button");
             const mobileMenuButtonIcon = document.querySelector(".mobileNav button > i");
             const mobileMenu = document.querySelector(
@@ -122,6 +150,7 @@
             });
         });
     </script>
+    @stack('scripts')
 </body>
 
 </html>

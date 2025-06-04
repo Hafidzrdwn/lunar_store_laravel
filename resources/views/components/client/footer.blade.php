@@ -3,7 +3,7 @@
         <div class="grid gap-8 md:grid-cols-4">
             <div>
                 <a href="/" wire:navigate class="flex items-center gap-3 mb-3">
-                    <img src="<?= public_path('assets/client/images/logo.png') ?>" alt="Logo Lunar Store" width="45" />
+                    <img src="<?= asset('assets/client/images/logo.png') ?>" alt="Logo Lunar Store" width="45" />
                     <span class="text-white font-bold text-[20px] text-righteous uppercase">Lunar Store</span>
                 </a>
                 <p class="my-6 text-gray-300">
