@@ -45,58 +45,89 @@
                         <span>Orders</span>
                     </a>
 
-                    <!-- User Profile Dropdown -->
-                    <div class="dropdown relative">
-                        <button class="flex items-center px-3 py-2 space-x-2 rounded-md hover:bg-gray-100"
-                            id="profileDropdown">
-                            <span class="text-gray-900 font-semibold"></span>
-                            <div
-                                class="h-10 w-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
-                                <img src="" alt="User" class="h-full w-full object-cover">
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open"
+                            class="flex items-center px-3 py-2 space-x-3 rounded-md hover:bg-gray-100 transition-colors duration-200 w-full"
+                            :class="{ 'bg-gray-100': open }">
+                            <div class="relative">
+                                <div
+                                    class="h-10 w-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+                                    @if (auth()->user()->avatar)
+                                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="User Profile"
+                                            class="h-full w-full object-cover">
+                                    @else
+                                        <img src="{{ Avatar::create(auth()->user()->name)->toBase64() }}" alt="User Profile"
+                                            class="h-full w-full object-cover">
+                                    @endif
+                                </div>
+                                <div
+                                    class="absolute -bottom-0 -right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white">
+                                </div>
                             </div>
-                            <i class="fas fa-chevron-down text-gray-500 text-xs"></i>
+                            <div class="flex-1 text-left">
+                                <span
+                                    class="block text-gray-900 font-semibold text-sm">{{ auth()->user()->username }}</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"
+                                :class="{ 'rotate-180': open }"></i>
                         </button>
-                        <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
-                            <a href="settings.php"
-                                class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
-                                <i class="fas fa-cog mr-2"></i>
+
+                        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                            @click.outside="open = false"
+                            class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-20 border-gray-200 border">
+
+                            <div class="px-4 py-2 border-b border-gray-100">
+                                <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
+                                <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
+                            </div>
+
+                            <a href="#"
+                                class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center transition-colors duration-150">
+                                <i class="fas fa-user mr-3 w-4 text-gray-400"></i>
+                                <span>My Profile</span>
+                            </a>
+
+                            <a href="#"
+                                class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center transition-colors duration-150">
+                                <i class="fas fa-cog mr-3 w-4 text-gray-400"></i>
                                 <span>Settings</span>
                             </a>
-                            <a href=""
-                                class="px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-600 flex items-center btnLogout">
-                                <i class="fas fa-sign-out-alt mr-2"></i>
-                                <span>Logout</span>
-                            </a>
+
+                            <hr class="my-1 border-gray-100">
+
+                            <livewire:client.logout />
                         </div>
-                    </div>
-                @else
-                    <a href="/"
-                        @if (!request()->is('/')) wire:navigate @else x-data @click.prevent="
+                    @else
+                        <a href="/"
+                            @if (!request()->is('/')) wire:navigate @else x-data @click.prevent="
                         window.history.pushState(null, '', '/');
                         window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
-                        class="{{ is_active('/') }} transition-colors hover:text-blue-600">Home</a>
-                    <a href="{{ route('aboutus') }}"
-                        @if (!request()->is('aboutus')) wire:navigate @else x-data @click.prevent="
+                            class="{{ is_active('/') }} transition-colors hover:text-blue-600">Home</a>
+                        <a href="{{ route('aboutus') }}"
+                            @if (!request()->is('aboutus')) wire:navigate @else x-data @click.prevent="
                         window.history.pushState(null, '', '/aboutus');
                         window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
-                        class="{{ is_active('aboutus') }} transition-colors hover:text-blue-600">About Us</a>
-                    <a href="/#testimonials" @if (!request()->is('/')) wire:navigate @endif
-                        class="text-gray-700 transition-colors hover:text-blue-600">Testimonials</a>
-                    <a href="/#pricing" @if (!request()->is('/')) wire:navigate @endif
-                        class="text-gray-700 transition-colors hover:text-blue-600">Pricing</a>
-                    <a href="/#contact" @if (!request()->is('/')) wire:navigate @endif
-                        class="text-gray-700 transition-colors hover:text-blue-600">Contact</a>
-                    <a href="{{ route('login') }}" wire:navigate
-                        class="px-4 py-3 text-white transition-all bg-blue-500 rounded-md hover:bg-blue-600 active:scale-[0.9]">
-                        Login Now <i class="ml-1 fas fa-sign-in-alt"></i>
-                    </a>
-                @endauth
-            </div>
-            <div class="flex items-center md:hidden mobileNav">
-                <button class="text-[24px] text-blue-500">
-                    <i class="fas fa-bars"></i>
-                </button>
+                            class="{{ is_active('aboutus') }} transition-colors hover:text-blue-600">About Us</a>
+                        <a href="/#testimonials" @if (!request()->is('/')) wire:navigate @endif
+                            class="text-gray-700 transition-colors hover:text-blue-600">Testimonials</a>
+                        <a href="/#pricing" @if (!request()->is('/')) wire:navigate @endif
+                            class="text-gray-700 transition-colors hover:text-blue-600">Pricing</a>
+                        <a href="/#contact" @if (!request()->is('/')) wire:navigate @endif
+                            class="text-gray-700 transition-colors hover:text-blue-600">Contact</a>
+                        <a href="{{ route('login') }}" wire:navigate
+                            class="px-4 py-3 text-white transition-all bg-blue-500 rounded-md hover:bg-blue-600 active:scale-[0.9]">
+                            Login Now <i class="ml-1 fas fa-sign-in-alt"></i>
+                        </a>
+                    @endauth
+                </div>
+                <div class="flex items-center md:hidden mobileNav">
+                    <button class="text-[24px] text-blue-500">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 </nav>
