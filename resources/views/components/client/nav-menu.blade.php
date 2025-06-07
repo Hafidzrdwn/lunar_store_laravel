@@ -28,11 +28,11 @@
             </div>
             <div class="items-center hidden space-x-8 md:flex mobileMenu">
                 @auth
-                    <a href="" class="hover:text-blue-600 flex items-center">
+                    <a href="" class="{{ is_active('catalog') }} hover:text-blue-600 flex items-center">
                         <i class="fas fa-box mr-1"></i>
                         <span>Catalog</span>
                     </a>
-                    <a href="" class="hover:text-blue-600 inline-flex items-center">
+                    <a href="" class="{{ is_active('cart') }} hover:text-blue-600 inline-flex items-center">
                         <i class="fas fa-shopping-cart mr-1"></i>
                         <span>Cart</span>
                         <span
@@ -40,7 +40,7 @@
                             5
                         </span>
                     </a>
-                    <a href="" class="hover:text-blue-600 flex items-center">
+                    <a href="" class="{{ is_active('orders') }} hover:text-blue-600 flex items-center">
                         <i class="fas fa-history mr-1"></i>
                         <span>Orders</span>
                     </a>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="flex-1 text-left">
                                 <span
-                                    class="block text-gray-900 font-semibold text-sm">{{ auth()->user()->username }}</span>
+                                    class="block text-gray-700 font-semibold text-sm">{{ auth()->user()->username }}</span>
                             </div>
                             <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"
                                 :class="{ 'rotate-180': open }"></i>
@@ -80,11 +80,11 @@
                             class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-20 border-gray-200 border">
 
                             <div class="px-4 py-2 border-b border-gray-100">
-                                <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
+                                <p class="text-sm font-medium text-gray-700">{{ auth()->user()->name }}</p>
                                 <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
                             </div>
 
-                            <a href="#"
+                            <a href="{{ route('profile', auth()->user()->username) }}?tab=overview" wire:navigate
                                 class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center transition-colors duration-150">
                                 <i class="fas fa-user mr-3 w-4 text-gray-400"></i>
                                 <span>My Profile</span>
