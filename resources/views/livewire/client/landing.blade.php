@@ -52,32 +52,32 @@
             <div class="grid items-center grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6 justify-items-center">
                 <div
                     class="flex items-center justify-center h-12 transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                    <img src="<?= asset('assets/client/images/netf.png') ?>" alt="Netflix Logo" width="80"
+                    <img src="{{ asset('assets/client/images/netf.png') }}" alt="Netflix Logo" width="80"
                         height="48" />
                 </div>
                 <div
                     class="flex items-center justify-center h-12 transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                    <img src="<?= asset('assets/client/images/youtube.svg') ?>" alt="YouTube Premium Icon"
+                    <img src="{{ asset('assets/client/images/youtube.svg') }}" alt="YouTube Premium Icon"
                         width="80" height="48" />
                 </div>
                 <div
                     class="flex items-center justify-center h-12 transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                    <img src="<?= asset('assets/client/images/spotify.svg') ?>" alt="Spotify Icon" width="80"
+                    <img src="{{ asset('assets/client/images/spotify.svg') }}" alt="Spotify Icon" width="80"
                         height="48" />
                 </div>
                 <div
                     class="flex items-center justify-center h-12 transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                    <img src="<?= asset('assets/client/images/canva.svg') ?>" alt="Canva Icon" width="80"
+                    <img src="{{ asset('assets/client/images/canva.svg') }}" alt="Canva Icon" width="80"
                         height="48" />
                 </div>
                 <div
                     class="flex items-center justify-center h-12 transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                    <img src="<?= asset('assets/client/images/ml.png') ?>" alt="Top Up Diamond Mobile Legends Icon"
+                    <img src="{{ asset('assets/client/images/ml.png') }}" alt="Top Up Diamond Mobile Legends Icon"
                         width="80" height="48" />
                 </div>
                 <div
                     class="flex items-center justify-center h-12 transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                    <img src="<?= asset('assets/client/images/gpt.png') ?>" alt="ChatGPT Icon" width="80"
+                    <img src="{{ asset('assets/client/images/gpt.png') }}" alt="ChatGPT Icon" width="80"
                         height="48" />
                 </div>
             </div>
@@ -225,7 +225,7 @@
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <div class="overflow-hidden transition-shadow bg-white rounded-lg shadow-md hover:shadow-lg">
                     <div class="relative h-64 bg-blue-100">
-                        <img src="<?= asset('assets/client/images/premium_apps.png') ?>" alt="Premium Apps"
+                        <img src="{{ asset('assets/client/images/premium_apps.png') }}" alt="Premium Apps"
                             class="object-cover w-full h-full" />
                     </div>
                     <div class="p-6">
@@ -248,7 +248,7 @@
 
                 <div class="overflow-hidden transition-shadow bg-white rounded-lg shadow-md hover:shadow-lg">
                     <div class="relative h-64 bg-blue-100">
-                        <img src="<?= asset('assets/client/images/topup_ml.png') ?>" alt="Topup Mobile Legends"
+                        <img src="{{ asset('assets/client/images/topup_ml.png') }}" alt="Topup Mobile Legends"
                             class="object-cover w-full h-full" />
                     </div>
                     <div class="p-6">
@@ -272,7 +272,7 @@
 
                 <div class="overflow-hidden transition-shadow bg-white rounded-lg shadow-md hover:shadow-lg">
                     <div class="relative h-64 bg-blue-1004">
-                        <img src="<?= asset('assets/client/images/edu_features.png') ?>" alt="Education Features"
+                        <img src="{{ asset('assets/client/images/edu_features.png') }}" alt="Education Features"
                             class="object-cover w-full h-full" />
                     </div>
                     <div class="p-6">
@@ -324,7 +324,7 @@
                     <div class="flex items-center mb-6">
                         <div class="mr-4">
                             <div class="w-12 h-12 overflow-hidden rounded-full">
-                                <img src="<?= asset('assets/client/images/adit.jpg') ?>" alt="Aditya Heru"
+                                <img src="{{ asset('assets/client/images/adit.jpg') }}" alt="Aditya Heru"
                                     class="object-cover" />
                             </div>
                         </div>
@@ -343,7 +343,7 @@
                     <div class="flex items-center mb-6">
                         <div class="mr-4">
                             <div class="w-12 h-12 overflow-hidden rounded-full">
-                                <img src="<?= asset('assets/client/images/suci.jpg') ?>" alt="Michael Chen"
+                                <img src="{{ asset('assets/client/images/suci.jpg') }}" alt="Michael Chen"
                                     class="object-cover" />
                             </div>
                         </div>
@@ -362,7 +362,7 @@
                     <div class="flex items-center mb-6">
                         <div class="mr-4">
                             <div class="w-12 h-12 overflow-hidden rounded-full">
-                                <img src="<?= asset('assets/client/images/aliando.jpg') ?>" alt="Jessica Williams"
+                                <img src="{{ asset('assets/client/images/aliando.jpg') }}" alt="Jessica Williams"
                                     class="object-cover" />
                             </div>
                         </div>

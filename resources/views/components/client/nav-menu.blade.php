@@ -22,7 +22,7 @@
                     window.history.pushState(null, '', '/');
                     window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
                     class="flex items-center gap-3">
-                    <img src="<?= asset('assets/client/images/logo.png') ?>" alt="Logo Lunar Store" width="45" />
+                    <img src="{{ asset('assets/client/images/logo.png') }}" alt="Logo Lunar Store" width="45" />
                     <span class="text-blue-600 font-bold text-[18px] lunar-text uppercase">Lunar Store</span>
                 </a>
             </div>

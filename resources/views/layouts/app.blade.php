@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ 'Lunar Store - ' . $title ?? config('app.name') }}</title>
-    <link rel="shortcut icon" href="<?= asset('assets/client/images/logo.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/client/images/logo.png') }}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 
     @vite('resources/css/app.css')
     @livewireStyles
-    <link rel="stylesheet" href="<?= asset('assets/client/css/custom.css') ?>" />
+    <link rel="stylesheet" href="{{ asset('assets/client/css/custom.css') }}" />
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">

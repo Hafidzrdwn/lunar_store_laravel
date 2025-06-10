@@ -7,7 +7,7 @@
                     window.history.pushState(null, '', '/');
                     window.scrollTo({ top: 0, behavior: 'smooth' });" @endif
                     class="flex items-center gap-3 mb-3">
-                    <img src="<?= asset('assets/client/images/logo.png') ?>" alt="Logo Lunar Store" width="45" />
+                    <img src="{{ asset('assets/client/images/logo.png') }}" alt="Logo Lunar Store" width="45" />
                     <span class="text-white font-bold text-[20px] text-righteous uppercase">Lunar Store</span>
                 </a>
                 <p class="my-6 text-gray-300">
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="pt-8 mt-12 text-center text-white border-t border-gray-800">
-            <p>&copy; <?= date('Y') ?> Lunar Store. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Lunar Store. All rights reserved.</p>
         </div>
     </div>
 </footer>

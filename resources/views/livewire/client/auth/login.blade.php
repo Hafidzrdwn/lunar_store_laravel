@@ -1,7 +1,7 @@
 <div>
     <section class="flex flex-col md:flex-row h-screen">
         <div class="hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen fixed left-0 top-0">
-            <img src="<?= asset('assets/client/images/bg_login_lunar2.png') ?>" alt="Login Background"
+            <img src="{{ asset('assets/client/images/bg_login_lunar2.png') }}" alt="Login Background"
                 class="w-full h-full object-cover" />
         </div>
 

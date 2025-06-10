@@ -1,16 +1,12 @@
 <div>
     <div class="auth-logo d-flex align-items-center gap-3">
-        <img src="<?= asset('assets/client/images/logo.png') ?>" alt="Logo">
+        <img src="{{ asset('assets/client/images/logo.png') }}" alt="Logo">
         <h5>LUNAR STORE</h5>
     </div>
     <h1 class="auth-title">Log in.</h1>
     <p class="auth-subtitle mb-3">Log in to Lunar Store Admin Dashboard Panel.</p>
 
-    <?php if (isset($_SESSION['errors']['login'])): ?>
-    <div class="alert alert-danger">
-        <?= $_SESSION['errors']['login'][0] ?>
-    </div>
-    <?php endif; ?>
+    <x-alert-bootstrap :component="$this" />
 
     <form wire:submit="login">
         <div class="form-group position-relative has-icon-left mb-4">

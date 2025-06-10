@@ -122,16 +122,16 @@
                 @foreach ($teams as $team)
                     <div class="group block text-center lg:w-1/5 sm:w-1/3 min-[450px]:w-1/2 w-full">
                         <div class="relative mb-5">
-                            <img src="<?= asset('assets/client/images/' . $team['image']) ?>"
-                                alt="<?= $team['name'] ?> image"
+                            <img src="{{ asset('assets/client/images/' . $team['image']) }}"
+                                alt="{{ $team['name'] }} image"
                                 class="object-cover mx-auto duration-500 border-2 border-transparent border-solid w-28 h-28 rounded-2xl ransition-all group-hover:border-blue-500" />
                         </div>
                         <h4
                             class="mb-2 text-xl font-semibold text-center text-gray-900 transition-all duration-500 group-hover:text-blue-500">
-                            <?= $team['name'] ?>
+                            {{ $team['name'] }}
                         </h4>
                         <span
-                            class="block text-center text-gray-500 transition-all duration-500 group-hover:text-gray-900"><?= $team['role'] ?></span>
+                            class="block text-center text-gray-500 transition-all duration-500 group-hover:text-gray-900">{{ $team['role'] }}</span>
                     </div>
                 @endforeach
             </div>
