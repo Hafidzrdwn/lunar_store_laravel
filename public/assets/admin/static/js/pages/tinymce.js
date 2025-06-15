@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const themeOptions = document.body.classList.contains("theme-dark")
+  let themeOptions = document.body.classList.contains("theme-dark")
     ? {
         skin: "oxide-dark",
         content_css: "dark",

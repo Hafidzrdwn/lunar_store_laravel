@@ -20,6 +20,13 @@ class Login extends Component
     public $password;
     public $remember = false;
 
+    public function mount()
+    {
+        if (session()->has('swal-auth')) {
+            $this->dispatch('show-swal', session('swal-auth'));
+        }
+    }
+
     /**
      * Handle the login action.
      */

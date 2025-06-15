@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('product_types', function (Blueprint $table) {
             $table->id();
-            $table->string('app_name');
-            $table->string('type_name');
+            $table->string('app_name', 100);
+            $table->string('type_name', 75);
+            $table->string('unit', 50)->nullable();
             $table->string('description')->nullable();
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

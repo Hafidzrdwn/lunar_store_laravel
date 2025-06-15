@@ -17,9 +17,10 @@ return new class extends Migration
             $table->text('description');
             $table->string('cover_img')->nullable();
             $table->string('notes', 150)->nullable();
-            $table->boolean('has_type')->default(false);
+            $table->boolean('is_topup')->default(false);
             $table->boolean('ready_stock')->default(true);
             $table->foreignId('category_id')->constrained('product_categories')->cascadeOnDelete();
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

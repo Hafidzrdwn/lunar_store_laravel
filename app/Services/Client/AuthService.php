@@ -32,6 +32,11 @@ class AuthService
             throw ValidationException::withMessages(['Invalid email or password. Please try again.']);
         }
 
+        // check if user is active
+        if (!$user->is_active) {
+            throw ValidationException::withMessages(['Your account is inactive. Please contact administrator.']);
+        }
+
         if (!$remember) {
             // update token
             DB::table('users')

@@ -23,15 +23,16 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/compiled/css/auth.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/custom.css') }}">
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.bootstrap5.min.css">
+    <link
+        href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.2/af-2.7.0/b-3.2.3/b-colvis-3.2.3/b-print-3.2.3/cr-2.1.1/cc-1.0.4/date-1.5.5/fc-5.0.4/fh-4.0.2/kt-2.12.1/r-3.0.4/rg-1.5.1/rr-1.5.0/sc-2.4.3/sb-1.8.2/sp-2.3.3/sl-3.0.1/sr-1.4.1/datatables.min.css"
+        rel="stylesheet" integrity="sha384-TlPrW7HQQtafad6WPrydBWlAc0UnSI9ye7clOBvRvSO7MUIjejkfQPrOLP6iRg7v"
+        crossorigin="anonymous">
 
     @stack('styles')
 </head>
 
 <body>
-    <script src="{{ asset('assets/admin/static/js/initTheme.js') }}"></script>
+    <script defer src="{{ asset('assets/admin/static/js/initTheme.js') }}"></script>
     @php
         $isAuthPage = request()->is('admin/login');
     @endphp
@@ -71,6 +72,7 @@
     @endif
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @livewireScripts
     @vite('resources/js/admin.js')
     @if (!$isAuthPage)
@@ -80,15 +82,25 @@
 
         <!-- Include Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
+        <script
+            src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.2/af-2.7.0/b-3.2.3/b-colvis-3.2.3/b-print-3.2.3/cr-2.1.1/cc-1.0.4/date-1.5.5/fc-5.0.4/fh-4.0.2/kt-2.12.1/r-3.0.4/rg-1.5.1/rr-1.5.0/sc-2.4.3/sb-1.8.2/sp-2.3.3/sl-3.0.1/sr-1.4.1/datatables.min.js"
+            integrity="sha384-T5JsoPWbI1k4R8QhFo0pwD4XPUg6raKMhvMIkr+WOg4Jx3EujydY4gKNvw4MzfJT" crossorigin="anonymous">
+        </script>
     @endif
     <script src="{{ asset('assets/admin/compiled/js/app.js') }}"></script>
+    <script>
+        document.addEventListener('admin-updated', (data) => {
+            const nameElement = document.getElementById('admin-fullname');
+            const usernameElement = document.getElementById('admin-username');
+
+            if (nameElement) {
+                nameElement.textContent = data.detail[0].full_name;
+            }
+            if (usernameElement) {
+                usernameElement.textContent = "Hello, " + data.detail[0].username;
+            }
+        });
+    </script>
     @stack('scripts')
 </body>
 

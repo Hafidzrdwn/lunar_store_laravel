@@ -1,5 +1,5 @@
 
-const THEME_KEY = "theme"
+var THEME_KEY = "theme"
 
 function toggleDarkTheme() {
   setTheme(
@@ -49,7 +49,7 @@ function initTheme() {
 
 window.addEventListener('DOMContentLoaded', () => {
   const toggler = document.getElementById("toggle-dark")
-  const theme = localStorage.getItem(THEME_KEY)
+  let theme = localStorage.getItem(THEME_KEY)
 
   if(toggler) {
     toggler.checked = theme === "dark"

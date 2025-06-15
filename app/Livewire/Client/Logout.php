@@ -24,6 +24,9 @@ class Logout extends Component
     public function performLogout()
     {
         Auth::logout();
+        session()->invalidate();
+        session()->regenerateToken();
+
         session()->flash('swal-auth', [
             'icon' => 'success',
             'title' => 'Logged out successfully!',

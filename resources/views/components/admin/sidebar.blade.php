@@ -50,7 +50,7 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu mt-0">
-                <li class="sidebar-item {{ is_active('admin/dashboard') }}">
+                <li class="sidebar-item {{ is_active('admin') }}">
                     <a href="{{ route('admin.dashboard') }}" wire:navigate class="sidebar-link">
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
@@ -61,37 +61,37 @@
 
                 <li class="sidebar-title mt-3">Data Master</li>
                 <li class="sidebar-item {{ is_active('admin/user_admin') }}">
-                    <a href="" class="sidebar-link" wire:navigate>
+                    <a href="{{ route('admin.user_admin') }}" class="sidebar-link" wire:navigate>
                         <i class="fas fa-user-cog"></i>
                         <span>Data Administrator</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ is_active('admin/users') }}">
-                    <a href="" class="sidebar-link" wire:navigate>
+                    <a href="{{ route('admin.users') }}" class="sidebar-link" wire:navigate>
                         <i class="fas fa-users"></i>
                         <span>Data Pengguna</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ is_active('admin/categories') }}">
-                    <a href="" class="sidebar-link" wire:navigate>
+                    <a href="{{ route('admin.products.categories') }}" class="sidebar-link" wire:navigate>
                         <i class="fas fa-icons"></i>
                         <span>Data Kategori</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ is_active('admin/products') }}">
-                    <a href="" class="sidebar-link" wire:navigate>
+                    <a href="{{ route('admin.products') }}" class="sidebar-link" wire:navigate>
                         <i class="fas fa-store"></i>
                         <span>Data Produk</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ is_active('admin/product_types') }}">
-                    <a href="" class="sidebar-link" wire:navigate>
+                    <a href="{{ route('admin.product_types') }}" class="sidebar-link" wire:navigate>
                         <i class="fas fa-tags"></i>
                         <span>Data Tipe Produk</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ is_active('admin/product_details') }}">
-                    <a href="" class="sidebar-link" wire:navigate>
+                    <a href="{{ route('admin.product_details') }}" class="sidebar-link" wire:navigate>
                         <i class="fas fa-list-ul"></i>
                         <span>Detail Produk</span>
                     </a>
@@ -111,10 +111,7 @@
                 <hr />
 
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link text-danger btnLogout">
-                        <i class="fas fa-sign-out-alt text-danger"></i>
-                        <span>Logout</span>
-                    </a>
+                    <livewire:admin.logout :type="'sidebar'" />
                 </li>
             </ul>
         </div>
