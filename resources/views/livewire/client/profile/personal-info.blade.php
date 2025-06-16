@@ -2,9 +2,36 @@
     <div class="mb-6">
         <h1 class="text-2xl font-bold text-gray-900 mb-2">Personal Information</h1>
         <p class="text-gray-600">Update your personal details and contact information.</p>
+
+        @if ($isWarningAuth)
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-4">
+                <div class="flex">
+                    <div class="flex-shrink-0 self-center">
+                        <svg class="h-8 w-8 text-amber-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-md text-amber-700 font-semibold">
+                            Your account has been linked with Google.
+                        </p>
+                        <p class="text-md text-amber-700 mt-1">
+                            Please change <a href="#personal-info-form"
+                                class="text-amber-600 hover:text-amber-800 font-medium">your
+                                username</a> and <a href=""
+                                class="text-amber-600 hover:text-amber-800 font-medium">change your
+                                password</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
     <form wire:submit="save">
-        <div class="bg-white rounded-2xl border border-gray-200 p-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-8" id="personal-info-form">
             <!-- Profile Image Upload Section -->
             <div class="mb-8 pb-8 border-b border-gray-200">
                 <label class="block text-sm font-medium text-gray-700 mb-3">Profile Picture</label>
@@ -55,7 +82,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-3">Username</label>
-                    <input type="text" wire:model="username" disabled
+                    <input id="username" type="text" wire:model="username"
+                        {{ $username && trim($username) != '_g_' ? 'disabled' : '' }}
                         class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed">
                 </div>
                 <div>

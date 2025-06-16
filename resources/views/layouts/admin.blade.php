@@ -27,7 +27,6 @@
         href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.2/af-2.7.0/b-3.2.3/b-colvis-3.2.3/b-print-3.2.3/cr-2.1.1/cc-1.0.4/date-1.5.5/fc-5.0.4/fh-4.0.2/kt-2.12.1/r-3.0.4/rg-1.5.1/rr-1.5.0/sc-2.4.3/sb-1.8.2/sp-2.3.3/sl-3.0.1/sr-1.4.1/datatables.min.css"
         rel="stylesheet" integrity="sha384-TlPrW7HQQtafad6WPrydBWlAc0UnSI9ye7clOBvRvSO7MUIjejkfQPrOLP6iRg7v"
         crossorigin="anonymous">
-
     @stack('styles')
 </head>
 
@@ -71,8 +70,8 @@
         </div>
     @endif
 
+    <script src="{{ asset('assets/admin/compiled/js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @livewireScripts
     @vite('resources/js/admin.js')
     @if (!$isAuthPage)
@@ -87,7 +86,6 @@
             integrity="sha384-T5JsoPWbI1k4R8QhFo0pwD4XPUg6raKMhvMIkr+WOg4Jx3EujydY4gKNvw4MzfJT" crossorigin="anonymous">
         </script>
     @endif
-    <script src="{{ asset('assets/admin/compiled/js/app.js') }}"></script>
     <script>
         document.addEventListener('admin-updated', (data) => {
             const nameElement = document.getElementById('admin-fullname');

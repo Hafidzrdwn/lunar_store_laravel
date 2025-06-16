@@ -28,7 +28,8 @@
             </div>
             <div class="items-center hidden space-x-8 md:flex mobileMenu">
                 @auth
-                    <a href="" class="{{ is_active('catalog') }} hover:text-blue-600 flex items-center">
+                    <a href="{{ route('catalog') }}" wire:navigate
+                        class="{{ is_active('catalog') }} hover:text-blue-600 flex items-center">
                         <i class="fas fa-box mr-1"></i>
                         <span>Catalog</span>
                     </a>
@@ -53,7 +54,7 @@
                                 <div
                                     class="h-10 w-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
                                     @if (auth()->user()->avatar)
-                                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="User Profile"
+                                        <img src="{{ auth()->user()->avatar }}" alt="User Profile"
                                             class="h-full w-full object-cover">
                                     @else
                                         <img src="{{ Avatar::create(auth()->user()->name)->toBase64() }}" alt="User Profile"
@@ -66,7 +67,7 @@
                             </div>
                             <div class="flex-1 text-left">
                                 <span
-                                    class="block text-gray-700 font-semibold text-sm">{{ auth()->user()->username }}</span>
+                                    class="block text-gray-700 font-semibold text-sm">{{ auth()->user()->username && trim(auth()->user()->username) != '_g_' ? auth()->user()->username : 'Guest' }}</span>
                             </div>
                             <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"
                                 :class="{ 'rotate-180': open }"></i>
@@ -79,12 +80,13 @@
                             @click.outside="open = false"
                             class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-20 border-gray-200 border">
 
-                            <div class="px-4 py-2 border-b border-gray-100">
+                            <div class="px-4 py-2 border-b border-gray-100 overflow-hidden" style="word-wrap: break-word;">
                                 <p class="text-sm font-medium text-gray-700">{{ auth()->user()->name }}</p>
                                 <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
                             </div>
 
-                            <a href="{{ route('profile', auth()->user()->username) }}?tab=overview" wire:navigate
+                            <a href="{{ auth()->user()->username && trim(auth()->user()->username) != '_g_' ? route('profile', auth()->user()->username) : route('profile', '_g_') }}?tab=overview"
+                                wire:navigate
                                 class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center transition-colors duration-150">
                                 <i class="fas fa-user mr-3 w-4 text-gray-400"></i>
                                 <span>My Profile</span>

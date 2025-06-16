@@ -3,6 +3,7 @@
 namespace App\Services\Client;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserService
@@ -14,6 +15,9 @@ class UserService
                 ->where('username', $username)
                 ->first();
             return (new User)->newFromBuilder((array) $user_data);
+        } else {
+            // If no username is provided, return the authenticated user
+            return Auth::guard('web')->user();
         }
 
         return null;

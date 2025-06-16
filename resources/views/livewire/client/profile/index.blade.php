@@ -14,11 +14,6 @@
             <div x-show="activeSection === 'personal'">
                 @livewire('client.profile.personal-info', ['user' => $user])
             </div>
-
-            <!-- Wishlist Section -->
-            <div x-show="activeSection === 'wishlist'">
-                @livewire('client.profile.wishlist')
-            </div>
         </div>
     </div>
 </div>

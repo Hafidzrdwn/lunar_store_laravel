@@ -35,13 +35,6 @@
                 'title' => 'Personal Info',
                 'subtitle' => 'Manage your details',
             ])
-
-            @include('components.client.profile.nav-item', [
-                'section' => 'wishlist',
-                'icon' => 'heart',
-                'title' => 'Wishlist',
-                'subtitle' => 'Saved items',
-            ])
         </div>
     </nav>
 

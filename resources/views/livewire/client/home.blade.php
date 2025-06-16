@@ -1,9 +1,4 @@
 <div>
-    @php
-        $categories = [];
-
-        $products = [];
-    @endphp
     <!-- Hero Section -->
     <section class="relative py-20 text-white overflow-x-clip bg-gradient-to-r from-blue-500 to-blue-800">
         <div class="absolute inset-0 overflow-hidden">
@@ -22,7 +17,7 @@
                         Get premium apps and game top-ups at the best prices
                     </p>
                     <div class="flex flex-col gap-4 sm:flex-row">
-                        <a href="/#featured"
+                        <a href="#featured"
                             class="px-6 py-3 text-lg font-medium text-blue-500 transition-all bg-white rounded-md active:scale-[0.9] hover:bg-blue-50">
                             Browse Products <i class="ml-1 text-sm fas fa-angle-double-right"></i>
                         </a>
@@ -30,11 +25,13 @@
                 </div>
                 <div class="mt-10 lg:mt-0 lg:w-1/2">
                     <div class="relative h-64 sm:h-72 md:h-80 lg:h-96">
+                        <!--This is moon animation-->
                         <div class="transform -translate-x-40 -translate-y-80">
                             <dotlottie-player
                                 src="https://lottie.host/07e69a38-119f-4261-a8e5-326f33bb2158/RY7A2B3V50.lottie"
                                 background="transparent" speed="1" style="width: 1150px; height: 1150px" loop
-                                autoplay></dotlottie-player>
+                                autoplay>
+                            </dotlottie-player>
                         </div>
                     </div>
                 </div>
@@ -48,20 +45,27 @@
             <h2 class="text-3xl font-bold text-playfair text-blue-600">Categories</h2>
             <div class="bg-blue-600 w-[50px] h-[3px] mb-8 mt-2"></div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <?php foreach ($categories as $category): ?>
-                <a href="" class="group h-full">
-                    <div
-                        class="bg-blue-50 rounded-lg overflow-hidden shadow-md transition-transform group-hover:scale-105 h-full flex flex-col">
-                        <div class="h-48 relative">
-                            <img src="" alt="" class="object-cover w-full h-full">
+                @foreach ($categories as $category)
+                    <a href="/catalog?category={{ $category->slug }}" wire:navigate class="group h-full">
+                        <div
+                            class="bg-blue-50 rounded-lg overflow-hidden shadow-md transition-transform group-hover:scale-105 h-full flex flex-col">
+                            <div class="h-48 relative">
+                                @if ($category->image)
+                                    <img src="{{ $category->image }}" alt="{{ $category->title }}"
+                                        class="object-cover w-full h-full"
+                                        onerror="this.src='https://placehold.co/300x200?text={{ $category->title }}'">
+                                @else
+                                    <img src="https://placehold.co/300x200?text={{ $category->title }}"
+                                        alt="{{ $category->title }}" class="object-cover w-full h-full">
+                                @endif
+                            </div>
+                            <div class="p-4 flex-1 flex flex-col">
+                                <h3 class="text-lg font-medium text-gray-900">{{ $category->title }}</h3>
+                                <p class="text-sm text-gray-600 mt-3">{{ $category->description }}</p>
+                            </div>
                         </div>
-                        <div class="p-4 flex-1 flex flex-col">
-                            <h3 class="text-lg font-medium text-gray-900"></h3>
-                            <p class="text-sm text-gray-600 mt-3"></p>
-                        </div>
-                    </div>
-                </a>
-                <?php endforeach; ?>
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -72,35 +76,43 @@
             <h2 class="text-3xl font-bold text-playfair text-blue-600">Featured Products</h2>
             <div class="bg-blue-600 w-[50px] h-[3px] mb-8 mt-2"></div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <?php foreach ($products as $product): ?>
-                <div
-                    class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex flex-col h-[400px] relative">
-                    <div class="h-48 relative">
-                        <img src="https://placehold.co/300x200" alt="" class="object-cover w-full h-full">
-                    </div>
-                    <div class="p-6 pb-24">
-                        <h3 class="text-lg font-semibold text-gray-900"></h3>
-
-                        <p class="text-sm text-gray-600 mt-1 overflow-hidden line-clamp-3">
-
-                        </p>
-                    </div>
-
-                    <div class="absolute bottom-0 left-0 right-0 p-6 flex items-center justify-between">
-                        <div class="flex flex-col items-start">
-                            <span class="text-blue-500 font-medium text-sm">Starting From</span>
-                            <span class="text-lg font-semibold text-blue-500"></span>
+                @foreach ($featuredProducts as $product)
+                    <div
+                        class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex flex-col h-[400px] relative">
+                        <div class="h-48 relative">
+                            @if ($product->cover_img)
+                                <img src="{{ $product->cover_img }}" alt="{{ $product->app_name }}"
+                                    class="object-cover w-full h-full"
+                                    onerror="this.src='https://placehold.co/300x200?text={{ $product->app_name }}'">
+                            @else
+                                <img src="https://placehold.co/300x200?text={{ $product->app_name }}"
+                                    alt="{{ $product->app_name }}" class="object-cover w-full h-full">
+                            @endif
                         </div>
-                        <a href=""
-                            class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-all active:scale-[0.9]">
-                            <i class="fas fa-eye mr-2"></i>View Details
-                        </a>
+                        <div class="p-6 pb-24">
+                            <h3 class="text-lg font-semibold text-gray-900">{{ $product->app_name }}</h3>
+                            <p class="text-sm text-gray-600 mt-1 overflow-hidden line-clamp-3">
+                                {{ Str::limit($product->description, 150) }}
+                            </p>
+                        </div>
+
+                        <div class="absolute bottom-0 left-0 right-0 p-6 flex items-center justify-between">
+                            <div class="flex flex-col items-start">
+                                <span class="text-blue-500 font-medium text-sm">Starting From</span>
+                                <span class="text-lg font-semibold text-blue-500">
+                                    {{ $this->formatPrice($product->starting_price) }}
+                                </span>
+                            </div>
+                            <a href="{{ route('product.details', $product->id) }}" wire:navigate
+                                class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-all active:scale-[0.9]">
+                                <i class="fas fa-eye mr-2"></i>View Details
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <?php endforeach; ?>
+                @endforeach
             </div>
             <div class="mt-8 text-center">
-                <a href=""
+                <a href="{{ route('catalog') }}" wire:navigate
                     class="inline-block border border-blue-500 text-blue-500 px-6 py-3 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all active:scale-[0.9]">
                     View All Products <i class="ml-1 text-sm fas fa-angle-double-right"></i>
                 </a>

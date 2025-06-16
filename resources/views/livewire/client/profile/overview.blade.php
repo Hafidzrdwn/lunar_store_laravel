@@ -28,12 +28,12 @@
                 'color' => 'purple',
             ])
 
-            @include('components.client.profile.overview-stat', [
+            {{-- @include('components.client.profile.overview-stat', [
                 'icon' => 'heart',
                 'value' => $stats['wishlist_items'],
                 'label' => 'Wishlist Items',
                 'color' => 'red',
-            ])
+            ]) --}}
         </div>
 
         <!-- Recent Activity -->

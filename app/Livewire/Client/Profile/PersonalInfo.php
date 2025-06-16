@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Client\Profile;
 
-use Laravolt\Avatar\Avatar;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -19,6 +20,8 @@ class PersonalInfo extends Component
     public $avatar;
     public $imagePreview;
 
+    public $isWarningAuth = false;
+
     public function mount($user)
     {
         $this->user = $user;
@@ -29,6 +32,10 @@ class PersonalInfo extends Component
         $this->address = $user['address'];
         $this->avatar = null;
         $this->imagePreview = $user['avatar'] ?? null;
+
+        if (Auth::guard('web')->user()->username == '_g_' || Hash::check(env('DEFAULT_PASSWORD'), $user['password'])) {
+            $this->isWarningAuth = true;
+        }
     }
 
     public function updatedAvatar()

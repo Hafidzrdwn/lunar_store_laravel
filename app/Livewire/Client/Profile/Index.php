@@ -24,7 +24,10 @@ class Index extends Component
     {
         // validate query parameter
         $section = $request->query('tab', 'overview');
-        if (!in_array($section, ['overview', 'personal', 'wishlist'])) {
+
+        $username = ($username != '_g_') ? $username : null;
+
+        if (!in_array($section, ['overview', 'personal'])) {
             $section = 'overview';
         }
         $this->setActiveSection($section);

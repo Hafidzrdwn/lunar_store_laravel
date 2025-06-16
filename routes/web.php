@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductDetailController;
 use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,6 +39,10 @@ Route::get('/aboutus', Client\Aboutus::class)->name('aboutus');
 Route::middleware('guest')->group(function () {
   Route::get('/login', Client\Auth\Login::class)->name('login');
   Route::get('/register', Client\Auth\Register::class)->name('register');
+
+  // Google Auth
+  Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google.login');
+  Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->withoutMiddleware(['csrf']);
 });
 
 // Admin guest
@@ -49,6 +54,9 @@ Route::middleware([AdminGuestMiddleware::class])->group(function () {
 // Authenticated Client Routes
 // ====================
 Route::middleware('auth')->group(function () {
+  Route::get('/catalog', Client\Catalog::class)->name('catalog');
+  Route::get('/product/{id}', Client\ProductDetails::class)->name('product.details');
+
   Route::get('/profile/{username}', Profile\Index::class)->name('profile');
 });
 
