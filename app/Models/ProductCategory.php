@@ -20,4 +20,9 @@ class ProductCategory extends Model
     protected $casts = [
         'is_deleted' => 'boolean',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
 }

@@ -115,5 +115,12 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     // ====================
     Route::get('/product_details', ProductData\Details::class)->name('product_details');
     Route::get('/product_details/data', [ProductDetailController::class, 'index'])->name('product_details.data');
+
+    // TRANSACTION MANAGER
+    Route::get('/transactions', Admin\TransactionManager::class)->name('transactions');
+
+    // DASHBOARD
+    // API route for chart data
+    Route::get('/dashboard/chart-data/{type}', [Admin\Dashboard::class, 'getChartData'])->name('dashboard.chart-data');
   });
 });

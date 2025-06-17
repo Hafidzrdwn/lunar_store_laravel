@@ -102,7 +102,7 @@
                 <li class="sidebar-title">Transaksi</li>
 
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link" wire:navigate>
+                    <a href="{{ route('admin.transactions') }}" class="sidebar-link" wire:navigate>
                         <i class="fas fa-money-bill-wave"></i>
                         <span>Penjualan</span>
                     </a>
