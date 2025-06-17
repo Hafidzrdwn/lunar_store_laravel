@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravolt\Avatar\Avatar;
 
 class User extends Authenticatable
 {
@@ -40,5 +41,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // In your User model
+    public function getAvatar()
+    {
+        if (empty($this->avatar) || !$this->avatar) {
+            $avatar = new Avatar();
+            return $avatar->create($this->name)->toBase64();
+        }
+
+        if ($this->avatar) {
+            if (str_contains($this->avatar, 'googleusercontent')) {
+                return $this->avatar;
+            }
+        }
     }
 }

@@ -47,7 +47,7 @@ class Home extends Component
         if ($price === null) {
             return '-';
         }
-        return 'Rp ' . number_format($price, 0, ',', '.');
+        return 'Rp' . number_format($price, 0, ',', '.');
     }
 
     public function render()

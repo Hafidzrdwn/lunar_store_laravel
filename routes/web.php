@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\GoogleAuthController;
+use App\Http\Controllers\Client\MidtransController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,8 @@ Route::get('/', function () {
   return app()->call($componentClass);
 });
 Route::get('/aboutus', Client\Aboutus::class)->name('aboutus');
+
+Route::post('/midtrans/notification', [MidtransController::class, 'notification'])->name('midtrans.notification');
 
 // ====================
 // Guest Routes
@@ -56,6 +59,14 @@ Route::middleware([AdminGuestMiddleware::class])->group(function () {
 Route::middleware('auth')->group(function () {
   Route::get('/catalog', Client\Catalog::class)->name('catalog');
   Route::get('/product/{id}', Client\ProductDetails::class)->name('product.details');
+
+  Route::get('/cart', Client\CartManager::class)->name('cart');
+
+  // Checkout routes
+  Route::get('/checkout', Client\CheckoutManager::class)->name('checkout');
+  Route::get('/order/confirmation/{code}', Client\OrderConfirmation::class)->name('order.confirmation');
+  Route::get('/order/history', Client\OrderHistory::class)->name('orders');
+  Route::get('/order/{code}', Client\OrderDetails::class)->name('order.details');
 
   Route::get('/profile/{username}', Profile\Index::class)->name('profile');
 });

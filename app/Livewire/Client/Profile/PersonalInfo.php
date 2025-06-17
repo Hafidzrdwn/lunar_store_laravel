@@ -31,7 +31,7 @@ class PersonalInfo extends Component
         $this->phone = $user['phone'];
         $this->address = $user['address'];
         $this->avatar = null;
-        $this->imagePreview = $user['avatar'] ?? null;
+        $this->imagePreview = Auth::guard('web')->user()->getAvatar();
 
         if (Auth::guard('web')->user()->username == '_g_' || Hash::check(env('DEFAULT_PASSWORD'), $user['password'])) {
             $this->isWarningAuth = true;

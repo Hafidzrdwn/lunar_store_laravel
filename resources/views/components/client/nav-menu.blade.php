@@ -30,18 +30,17 @@
                 @auth
                     <a href="{{ route('catalog') }}" wire:navigate
                         class="{{ is_active('catalog') }} hover:text-blue-600 flex items-center">
-                        <i class="fas fa-box mr-1"></i>
+                        <i class="fas fa-store mr-1"></i>
                         <span>Catalog</span>
                     </a>
-                    <a href="" class="{{ is_active('cart') }} hover:text-blue-600 inline-flex items-center">
+                    <a href="{{ route('cart') }}" wire:navigate
+                        class="{{ is_active('cart') }} hover:text-blue-600 inline-flex items-center">
                         <i class="fas fa-shopping-cart mr-1"></i>
                         <span>Cart</span>
-                        <span
-                            class="rounded-md ms-2 bg-blue-100 py-1 px-1 text-xs font-semibold text-center text-blue-500 min-h-[24px] min-w-[24px]">
-                            5
-                        </span>
+                        <livewire:client.cart-counter />
                     </a>
-                    <a href="" class="{{ is_active('orders') }} hover:text-blue-600 flex items-center">
+                    <a href="{{ route('orders') }}" wire:navigate
+                        class="{{ is_active('orders') }} hover:text-blue-600 flex items-center">
                         <i class="fas fa-history mr-1"></i>
                         <span>Orders</span>
                     </a>
@@ -53,13 +52,8 @@
                             <div class="relative">
                                 <div
                                     class="h-10 w-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
-                                    @if (auth()->user()->avatar)
-                                        <img src="{{ auth()->user()->avatar }}" alt="User Profile"
-                                            class="h-full w-full object-cover">
-                                    @else
-                                        <img src="{{ Avatar::create(auth()->user()->name)->toBase64() }}" alt="User Profile"
-                                            class="h-full w-full object-cover">
-                                    @endif
+                                    <img src="{{ auth()->user()->getAvatar() }}" alt="User Profile"
+                                        class="h-full w-full object-cover">
                                 </div>
                                 <div
                                     class="absolute -bottom-0 -right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white">

@@ -2,9 +2,13 @@
 
 namespace App\Livewire\Client;
 
+use App\Services\Client\CartService;
 use App\Services\Client\ProductService;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+
+use Livewire\Attributes\On;
 
 #[Title('Product Details')]
 class ProductDetails extends Component
@@ -12,12 +16,12 @@ class ProductDetails extends Component
     public $productId;
     public $product = null;
 
-    // Form data - these will be updated by JavaScript
     public $selectedPlan = null;
     public $selectedDuration = null;
     public $selectedPrice = 0;
-    public $selectedPlanText = '-';
-    public $selectedDurationText = '-';
+
+    public $selectedProductDetailId;
+    public $selectedQuantity = 1;
 
     protected $productService;
 
@@ -35,35 +39,38 @@ class ProductDetails extends Component
     public function loadProduct()
     {
         $this->product = $this->productService->getProductDetails($this->productId);
-
-        if (!$this->product) {
-            abort(404, 'Product not found');
-        }
     }
 
-    public function addToCart()
+    #[On('set-cart-data')]
+    public function setCartData($detailId, $quantity)
+    {
+        $this->selectedProductDetailId = $detailId;
+        $this->selectedQuantity = $quantity;
+    }
+
+    #[On('add-to-cart')]
+    public function addToCart(CartService $cartService)
     {
         try {
-            if (!$this->selectedDuration) {
-                session()->flash('error', 'Please select a duration');
+            if (!$this->selectedProductDetailId) {
+                $this->dispatch('show-error', message: 'Please select a duration');
                 return;
             }
 
-            $cartData = [
-                'product_id' => $this->productId,
-                'product_detail_id' => $this->selectedDuration,
-                'plan_id' => $this->selectedPlan,
-                'price' => $this->selectedPrice,
-                'quantity' => 1
-            ];
+            if (!Auth::guard('web')->check()) {
+                $this->dispatch('show-error', message: 'Please login to add items to cart');
+                return;
+            }
 
-            $this->productService->addToCart($cartData);
+            $cartService->addToCart([
+                'product_detail_id' => $this->selectedProductDetailId,
+                'quantity' => $this->selectedQuantity
+            ]);
 
-            session()->flash('success', 'Item added to cart successfully!');
             $this->dispatch('cart-updated');
-            $this->dispatch('show-success-modal');
+            $this->dispatch('show-success', message: 'Item added to cart successfully');
         } catch (\Exception $e) {
-            session()->flash('error', 'Failed to add item to cart. Please try again.');
+            $this->dispatch('show-error', message: 'Failed to add item to cart');
         }
     }
 

@@ -113,7 +113,7 @@
                                     </span>
                                 </div>
                                 @if ($product->ready_stock)
-                                    <a href="{{ route('product.details', $product->id) }}" wire:navigate
+                                    <a href="{{ route('product.details', $product->id) }}"
                                         class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm block text-center hover:bg-blue-600 transition-all active:scale-[0.9]">
                                         <i class="fas fa-eye mr-2"></i>View Details
                                     </a>

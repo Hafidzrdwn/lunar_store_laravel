@@ -19,42 +19,11 @@
             --gray-900: #111827;
         }
 
-        * {
-            box-sizing: border-box;
-        }
-
-        .product-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        .product-header {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            overflow: hidden;
-            margin-bottom: 2rem;
-            border: 1px solid var(--gray-100);
-        }
-
-        .product-info {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            padding: 3rem;
-            align-items: center;
-        }
-
         .product-image-container {
             position: relative;
-            border-radius: 16px;
             overflow: hidden;
             background: var(--gray-50);
             aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .product-image {
@@ -68,14 +37,6 @@
             transform: scale(1.05);
         }
 
-        .product-details h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
         .category-badge {
             display: inline-block;
             background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
@@ -86,13 +47,6 @@
             font-weight: 600;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
-        }
-
-        .product-description {
-            font-size: 1.125rem;
-            color: var(--gray-600);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
         }
 
         .product-note {
@@ -123,50 +77,29 @@
 
         .plans-section {
             background: white;
-            border-radius: 20px;
+            border-radius: 12px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             overflow: hidden;
             border: 1px solid var(--gray-100);
+            padding: 30px;
         }
 
-        .plans-header {
-            padding: 2rem 3rem;
-            border-bottom: 1px solid var(--gray-100);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .plans-title {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .plans-subtitle {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
-            border-radius: 2px;
-        }
-
-        .add-to-cart-btn {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
+        .duration-option {
+            transition: all 0.2s ease;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            border: 1px solid #e5e7eb;
+            background-color: white;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .duration-option:hover {
+            border-color: #004aad;
+        }
+
+        .duration-option.selected {
+            background-color: #e6f0ff;
+            border-color: #004aad;
         }
 
         .add-to-cart-btn:hover:not(:disabled) {
@@ -199,234 +132,17 @@
             }
         }
 
-        .plans-content {
-            padding: 3rem;
-        }
-
-        .plans-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .plans-grid.with-types {
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        }
-
-        .plans-grid.without-types {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
         .plan-card {
-            border: 2px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 2rem;
-            background: white;
             transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
         }
 
         .plan-card:hover {
-            border-color: var(--primary-blue);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px -5px rgba(37, 99, 235, 0.25);
-        }
-
-        .plan-card:hover::before {
-            transform: scaleX(1);
+            transform: translateY(-5px);
         }
 
         .plan-card.selected {
-            border-color: var(--primary-blue);
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px -5px rgba(37, 99, 235, 0.25);
-        }
-
-        .plan-card.selected::before {
-            transform: scaleX(1);
-        }
-
-        .plan-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .plan-radio {
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--gray-300);
-            border-radius: 50%;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-        }
-
-        .plan-radio.selected {
-            border-color: var(--primary-blue);
-            background: var(--primary-blue);
-        }
-
-        .plan-radio.selected::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .plan-info h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-description {
-            color: var(--gray-600);
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .durations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .duration-card {
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            padding: 1rem;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .duration-card:hover {
-            border-color: var(--primary-blue);
-            background: var(--gray-50);
-        }
-
-        .duration-card.selected {
-            border-color: var(--primary-blue);
-            background: var(--primary-blue);
-            color: white;
-            transform: scale(1.02);
-        }
-
-        .duration-card.selected .duration-price {
-            color: white;
-        }
-
-        .duration-name {
-            font-weight: 600;
-            color: var(--gray-800);
-            margin-bottom: 0.5rem;
-        }
-
-        .duration-card.selected .duration-name {
-            color: white;
-        }
-
-        .duration-price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-        }
-
-        .duration-notes {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            margin-top: 0.25rem;
-        }
-
-        .duration-card.selected .duration-notes {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .no-types-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--gray-800);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .duration-card-large {
-            border: 2px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 2rem;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            position: relative;
-        }
-
-        .duration-card-large:hover {
-            border-color: var(--primary-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.2);
-        }
-
-        .duration-card-large.selected {
-            border-color: var(--primary-blue);
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.4);
-        }
-
-        .duration-card-large .duration-name {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .duration-card-large .duration-price {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .duration-card-large.selected .duration-name,
-        .duration-card-large.selected .duration-price,
-        .duration-card-large.selected .duration-notes {
-            color: white;
-        }
-
-        .best-value-badge {
-            position: absolute;
-            top: -8px;
-            right: 1rem;
-            background: linear-gradient(135deg, var(--success-green), #059669);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            border-color: #004aad;
+            background-color: rgba(0, 74, 173, 0.05);
         }
 
         /* Modal Styles */
@@ -617,53 +333,6 @@
             transform: translateY(-1px);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .product-container {
-                padding: 1rem;
-            }
-
-            .product-info {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem;
-            }
-
-            .product-details h1 {
-                font-size: 2rem;
-            }
-
-            .plans-header {
-                padding: 1.5rem 2rem;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .plans-content {
-                padding: 2rem;
-            }
-
-            .plans-grid.with-types {
-                grid-template-columns: 1fr;
-            }
-
-            .plans-grid.without-types {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-
-            .durations-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-actions {
-                flex-direction: column;
-            }
-
-            .success-actions {
-                flex-direction: column;
-            }
-        }
-
         .plan-card,
         .duration-card,
         .duration-card-large {
@@ -678,15 +347,15 @@
     </style>
 @endpush
 
-<div class="product-container">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    @include('components.client.notification')
     @if ($product)
         <!-- Product Header -->
-        <div class="product-header">
-            <div class="product-info">
-                <div class="product-image-container">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+            <div class="p-6 flex flex-col md:flex-row items-center">
+                <div class="product-image-container rounded-xl md:w-1/4 flex justify-center mb-6 md:mb-0">
                     @if ($product['cover_img'])
-                        <img src="{{ asset('uploads/' . $product['cover_img']) }}" alt="{{ $product['app_name'] }}"
-                            class="product-image"
+                        <img src="{{ $product['cover_image'] }}" alt="{{ $product['app_name'] }}" class="product-image"
                             onerror="this.src='https://placehold.co/400x400?text={{ $product['app_name'] }}'">
                     @else
                         <img src="https://placehold.co/400x400?text={{ $product['app_name'] }}"
@@ -694,17 +363,17 @@
                     @endif
                 </div>
 
-                <div class="product-details">
-                    <h1>{{ $product['app_name'] }}</h1>
+                <div class="md:w-3/4 md:pl-8">
+                    <h1 class="text-3xl font-bold text-black mb-3">{{ $product['app_name'] }}</h1>
                     <div class="category-badge">{{ $product['category'] }}</div>
-                    <p class="product-description">{{ $product['description'] }}</p>
+                    <p class="text-gray-600 mb-4 text-[18px]">{{ $product['description'] }}</p>
 
                     @if ($product['notes'])
                         <div class="product-note">
                             <div class="product-note-content">
                                 <i class="fas fa-exclamation-triangle product-note-icon"></i>
                                 <div class="product-note-text">
-                                    <strong>Important Note:</strong> {{ $product['notes'] }}
+                                    <strong>Catatan:</strong> {{ $product['notes'] }}
                                 </div>
                             </div>
                         </div>
@@ -712,73 +381,99 @@
                 </div>
             </div>
         </div>
+        {{-- 
+        @php
+            dd($product);
+        @endphp --}}
 
         <!-- Plans Section -->
         <div class="plans-section">
-            <div class="plans-header">
+            <div class="flex justify-between items-center mb-8">
                 <div>
-                    <h2 class="plans-title">Choose Your Plan</h2>
-                    <div class="plans-subtitle"></div>
+                    <h2 class="text-xl md:text-2xl font-bold text-blue-600 text-playfair">Choose Your Plan</h2>
+                    <div class="bg-blue-600 w-[50px] h-[3px] mt-2"></div>
                 </div>
-                <button type="button" id="addToCartBtn" class="add-to-cart-btn" disabled>
-                    <i class="fas fa-shopping-cart"></i>
+                <button type="button" id="addToCartBtn"
+                    class="add-to-cart-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg"
+                    disabled>
                     Add to Cart
+                    <i class="fas fa-shopping-cart ml-2"></i>
                 </button>
             </div>
 
-            <div class="plans-content">
-                @if ($product['have_product_type'])
-                    <div class="plans-grid with-types">
-                        @foreach ($product['plans'] as $plan)
-                            <div class="plan-card" data-plan-id="{{ $plan['id'] }}"
-                                data-plan-name="{{ $plan['name'] }}">
-                                <div class="plan-header">
-                                    <div class="plan-radio" data-plan="{{ $plan['id'] }}"></div>
-                                    <div class="plan-info">
-                                        <h3>{{ $plan['name'] }}</h3>
-                                        @if ($plan['description'])
-                                            <p class="plan-description">{{ $plan['description'] }}</p>
-                                        @endif
+            @if ($product['have_product_type'])
+                <div
+                    class="grid 
+                @if (!$product['is_topup']) grid-cols-1 md:grid-cols-2 @endif
+                gap-6">
+                    @foreach ($product['plans'] as $plan)
+                        <div class="plan-card border cursor-pointer rounded-lg p-5 border-gray-200"
+                            id="plan-card-{{ $plan['id'] }}">
+                            <div class="flex items-start">
+                                <input type="radio" name="plan" id="plan_{{ $plan['id'] }}"
+                                    value="{{ $plan['id'] }}" class="mt-1 mr-3 plan-radio">
+                                <div class="w-full">
+                                    <label for="plan_{{ $plan['id'] }}"
+                                        class="font-semibold text-gray-800 block text-lg w-max">
+                                        {{ $plan['name'] }}
+                                    </label>
+
+                                    @if ($plan['description'])
+                                        <h6 class="text-sm text-gray-500 my-2">Description :</h6>
+                                        <p class="text-sm text-gray-600 mb-2">{{ $plan['description'] }}</p>
+                                    @endif
+
+                                    <div class="grid
+                    grid-cols-1 sm:grid-cols-2 gap-2 mt-4 duration-container"
+                                        id="durations-{{ $plan['id'] }}">
+                                        @foreach ($plan['durations'] as $key => $duration)
+                                            <div class="duration-option rounded-md p-3 flex justify-between items-center"
+                                                data-plan="{{ $plan['id'] }}" data-duration="{{ $duration['id'] }}"
+                                                data-price="{{ $duration['price'] }}">
+                                                <input type="radio" name="duration"
+                                                    id="duration_{{ $plan['id'] }}_{{ $duration['id'] }}"
+                                                    value="{{ $duration['id'] }}" class="hidden duration-radio">
+                                                <span class="text-sm">
+                                                    {{ $duration['duration'] ? $duration['duration'] : 'No Duration.' }}
+                                                    @if ($product['is_topup'])
+                                                        {{ $duration['unit'] }}
+                                                    @endif
+                                                </span>
+                                                <span
+                                                    class="font-semibold text-blue-500">{{ $this->formatPrice($duration['price']) }}
+                                                    {{ $duration['notes'] ? "{$duration['notes']}" : '' }}</span>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
-
-                                <div class="durations-grid">
-                                    @foreach ($plan['durations'] as $duration)
-                                        <div class="duration-card" data-plan="{{ $plan['id'] }}"
-                                            data-duration="{{ $duration['id'] }}"
-                                            data-price="{{ $duration['price'] }}"
-                                            data-duration-text="{{ $duration['duration'] }}">
-                                            <div class="duration-name">{{ $duration['duration'] ?: 'No Duration' }}
-                                            </div>
-                                            <div class="duration-price">{{ $this->formatPrice($duration['price']) }}
-                                            </div>
-                                            @if ($duration['notes'])
-                                                <div class="duration-notes">{{ $duration['notes'] }}</div>
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="col-span-full">
+                        <h3 class="text-lg font-medium text-gray-700">Select your preference :</h3>
                     </div>
-                @else
-                    <h3 class="no-types-title">Select Your Duration</h3>
-                    <div class="plans-grid without-types">
-                        @foreach ($product['durations'] as $duration)
-                            <div class="duration-card-large" data-duration="{{ $duration['id'] }}"
-                                data-price="{{ $duration['price'] }}"
-                                data-duration-text="{{ $duration['duration'] }}">
-                                <div class="best-value-badge">Best Value</div>
-                                <div class="duration-name">{{ $duration['duration'] }}</div>
-                                <div class="duration-price">{{ $this->formatPrice($duration['price']) }}</div>
-                                @if ($duration['notes'])
-                                    <div class="duration-notes">{{ $duration['notes'] }}</div>
-                                @endif
+                    @foreach ($product['durations'] as $duration)
+                        <div class="duration-option rounded-lg p-4 border flex flex-col justify-between border-gray-200"
+                            data-duration="{{ $duration['id'] }}" data-price="{{ $duration['price'] }}">
+                            <input type="radio" name="duration" id="duration_{{ $duration['id'] }}"
+                                value="{{ $duration['id'] }}" class="hidden duration-radio">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium text-gray-800">{{ $duration['duration'] }}</span>
                             </div>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
+                            <div class="text-center my-2">
+                                <span
+                                    class="text-2xl font-bold text-blue-600">{{ $this->formatPrice($duration['price']) }}</span>
+                            </div>
+                            @if ($duration['notes'])
+                                <div class="text-sm text-gray-500 mt-2">{{ $duration['notes'] }}</div>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
         <!-- Confirmation Modal -->
@@ -802,10 +497,18 @@
                         </div>
                     @endif
 
+
                     <div class="summary-row">
-                        <span class="summary-label">Duration:</span>
+                        <span class="summary-label">{{ $product['is_topup'] ? 'Quantity:' : 'Duration:' }}</span>
                         <span class="summary-value" id="modalDuration">-</span>
                     </div>
+
+                    @if ($product['have_product_type'] && $product['is_topup'])
+                        <div class="summary-row">
+                            <span class="summary-label">Unit:</span>
+                            <span class="summary-value" id="modalUnit">-</span>
+                        </div>
+                    @endif
 
                     <div class="summary-row">
                         <span class="summary-label">Total Price:</span>
@@ -819,24 +522,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Success Modal -->
-        <div class="modal-overlay" id="successModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="success-icon">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <h3 class="modal-title">Successfully Added!</h3>
-                    <p class="modal-subtitle">Your item has been added to the cart</p>
-                </div>
-
-                <div class="success-actions">
-                    <a href="{{ route('catalog') }}" class="btn-secondary">Continue Shopping</a>
-                    <a href="" class="btn-primary">View Cart</a>
-                </div>
-            </div>
-        </div>
     @else
         <div class="not-found">
             <div class="not-found-icon">
@@ -844,170 +529,290 @@
             </div>
             <h3>Product Not Found</h3>
             <p>The product you're looking for doesn't exist or is no longer available.</p>
-            <a href="{{ route('catalog') }}" class="btn-link">Browse Products</a>
+            <a href="{{ route('catalog') }}" wire:navigate class="btn-link">Browse Products</a>
         </div>
     @endif
 </div>
 
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-                    // State variables
-                    let selectedPlan = null;
-                    let selectedDuration = null;
-                    let selectedPrice = 0;
-                    let selectedPlanText = '-';
-                    let selectedDurationText = '-';
-                    let hasProductType = {{ $product['have_product_type'] ? 'true' : 'false' }};
+@if ($product)
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // DOM elements
+                const planCards = document.querySelectorAll('.plan-card');
+                const durationOptions = document.querySelectorAll('.duration-option');
+                const addToCartBtn = document.getElementById('addToCartBtn');
 
-                    // DOM elements
-                    const addToCartBtn = document.getElementById('addToCartBtn');
-                    const confirmModal = document.getElementById('confirmModal');
-                    const successModal = document.getElementById('successModal');
-                    const cancelBtn = document.getElementById('cancelBtn');
-                    const confirmBtn = document.getElementById('confirmBtn');
+                // Modal elements
+                const confirmModal = document.getElementById('confirmModal');
+                const modalPlan = document.getElementById('modalPlan');
+                const modalDuration = document.getElementById('modalDuration');
+                const modalUnit = document.getElementById('modalUnit');
+                const modalPrice = document.getElementById('modalPrice');
+                const closeConfirm = document.getElementById('cancelBtn');
+                const confirmBtn = document.getElementById('confirmBtn');
 
-                    const modalPlan = document.getElementById('modalPlan');
-                    const modalDuration = document.getElementById('modalDuration');
-                    const modalPrice = document.getElementById('modalPrice');
+                // Variables to track selection
+                let selectedPlan = null;
+                let selectedDuration = null;
+                let selectedPrice = 0;
+                let selectedDurationText_value = '-';
+                let selectedPlanText_value = '-';
+                let selectedUnitText_value = '-';
+                let hasProductType = {{ $product['have_product_type'] ? 'true' : 'false' }};
+                let isTopupProduct = {{ $product['is_topup'] ? 'true' : 'false' }};
 
-                    const planCards = document.querySelectorAll('.plan-card');
-                    const durationCards = document.querySelectorAll('.duration-card, .duration-card-large');
+                function formatRupiah(price) {
+                    return new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    }).format(price);
+                }
 
-                    // Utility functions
-                    function formatRupiah(price) {
-                        return new Intl.NumberFormat('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR',
-                            minimumFractionDigits: 0
-                        }).format(price);
+                // Get duration text safely from an option element
+                function getDurationText(durationOption) {
+                    let durationSpan = (!isTopupProduct) ? durationOption.querySelector('span:first-child') :
+                        durationOption.querySelector('span.text-sm');
+
+                    if (isTopupProduct) {
+                        selectedUnitText_value = durationSpan.textContent.trim().split(/\s+/)[1] || '-';
                     }
 
-                    function updateButtonState() {
-                        const isEnabled = hasProductType ? (selectedPlan && selectedDuration) : selectedDuration;
-                        addToCartBtn.disabled = !isEnabled;
+                    // For products without types (has different structure)
+                    if (!durationSpan || !durationSpan.textContent.trim()) {
+                        durationSpan = durationOption.querySelector('.font-medium');
                     }
 
-                    function updateLivewireState() {
-                        if (typeof @this !== 'undefined') {
-                            @this.set('selectedPlan', selectedPlan);
-                            @this.set('selectedPlanText', selectedPlanText);
-                            @this.set('selectedDuration', selectedDuration);
-                            @this.set('selectedDurationText', selectedDurationText);
-                            @this.set('selectedPrice', selectedPrice);
+                    // Fallback if neither is found
+                    if (!durationSpan) {
+                        // Try to find any span with text content
+                        const spans = durationOption.querySelectorAll('span');
+                        for (const span of spans) {
+                            if (span.textContent.trim() && !span.textContent.includes('Rp')) {
+                                durationSpan = span;
+                                break;
+                            }
                         }
                     }
 
-                    // Plan selection handler
-                    function handlePlanSelection(planId, planName) {
-                        console.log('Plan selected:', planId, 'Currently selected:', selectedPlan);
+                    return durationSpan ? durationSpan.textContent.trim() : 'Selected Duration';
+                }
 
-                        if (selectedPlan === planId) {
-                            // Deselect current plan
+                // Update button state
+                function updateButtonState() {
+                    addToCartBtn.disabled = hasProductType ?
+                        !(selectedPlan && selectedDuration) :
+                        !selectedDuration;
+                }
+
+                function resetAllSelections() {
+                    // Reset plan selection
+                    planCards.forEach(c => c.classList.remove('selected'));
+                    planCards.forEach(c => {
+                        const radio = c.querySelector('input[type="radio"]');
+                        if (radio) radio.checked = false;
+                    });
+
+                    // Reset duration selection
+                    durationOptions.forEach(opt => opt.classList.remove('selected'));
+                    durationOptions.forEach(opt => {
+                        const radio = opt.querySelector('input[type="radio"]');
+                        if (radio) radio.checked = false;
+                    });
+
+                    // Reset variables
+                    selectedPlan = null;
+                    selectedDuration = null;
+                    selectedPrice = 0;
+                    selectedPlanText_value = '-';
+                    selectedDurationText_value = '-';
+                }
+
+                function selectPlan(planId) {
+                    // Find the plan card
+                    const planCard = document.getElementById(`plan-card-${planId}`);
+                    if (!planCard) return;
+
+                    // Reset all cards' selected state
+                    planCards.forEach(c => c.classList.remove('selected'));
+
+                    // Select this card
+                    planCard.classList.add('selected');
+
+                    // Check the radio button
+                    const radio = planCard.querySelector('input[type="radio"]');
+                    radio.checked = true;
+
+                    // Store selected plan
+                    selectedPlan = planId;
+                    selectedPlanText_value = planCard.querySelector('label').textContent.trim();
+                }
+
+                // Handle plan selection
+                planCards.forEach(card => {
+                    card.addEventListener('click', function() {
+                        const radio = card.querySelector('input[type="radio"]');
+
+                        // Check if this plan is already selected (toggle functionality)
+                        if (selectedPlan === radio.value) {
+                            // Unselect this plan
+                            card.classList.remove('selected');
+                            radio.checked = false;
                             selectedPlan = null;
-                            selectedPlanText = '-';
+                            selectedPlanText_value = '-';
 
-                            // Clear duration selection
-                            clearDurationSelection();
+                            // Reset duration selection
+                            selectedDuration = null;
+                            selectedDurationText_value = '-';
+                            durationOptions.forEach(opt => {
+                                opt.classList.remove('selected');
+                                const durationRadio = opt.querySelector('input[type="radio"]');
+                                if (durationRadio) {
+                                    durationRadio.checked = false;
+                                }
+                            });
                         } else {
-                            // Select new plan
-                            selectedPlan = planId;
-                            selectedPlanText = planName;
+                            // Reset all cards' selected state
+                            planCards.forEach(c => c.classList.remove('selected'));
 
-                            // Clear duration selection when changing plans
-                            clearDurationSelection();
+                            // Select this card
+                            card.classList.add('selected');
+
+                            // Check the radio button
+                            radio.checked = true;
+
+                            // Store selected plan
+                            selectedPlan = radio.value;
+                            selectedPlanText_value = card.querySelector('label').textContent.trim();
+
+                            // Reset duration selection
+                            selectedDuration = null;
+                            selectedDurationText_value = '-';
+                            durationOptions.forEach(opt => {
+                                opt.classList.remove('selected');
+                                const durationRadio = opt.querySelector('input[type="radio"]');
+                                if (durationRadio) {
+                                    durationRadio.checked = false;
+                                }
+                            });
                         }
 
-                        updateVisualSelection();
+                        // Update button state
                         updateButtonState();
-                        updateLivewireState();
-                    }
+                    });
+                });
 
-                    // Duration selection handler
-                    function handleDurationSelection(durationId, durationText, price, planId) {
-                        console.log('Duration selected:', durationId, 'Plan:', planId, 'Currently selected:',
-                            selectedDuration);
+                durationOptions.forEach(option => {
+                    // Make the entire option and all its children clickable
+                    const makeClickable = (element) => {
+                        element.style.cursor = 'pointer';
+                        element.addEventListener('click', function(e) {
+                            selectDurationOption(option);
+                            e.stopPropagation(); // Prevent event bubbling
+                        });
 
-                        // If this duration belongs to a plan and we have product types
-                        if (hasProductType && planId && selectedPlan !== planId) {
-                            // Auto-select the plan first
-                            const planCard = document.querySelector(`[data-plan-id="${planId}"]');
-                        if (planCard) {
-                            handlePlanSelection(planId, planCard.dataset.planName);
-                        }
-                    }
+                        // Make all children clickable too
+                        Array.from(element.children).forEach(child => {
+                            makeClickable(child);
+                        });
+                    };
 
-                    if (selectedDuration === durationId) {
-                        // Deselect current duration
+                    makeClickable(option);
+                });
+
+                function selectDurationOption(option) {
+                    const radio = option.querySelector('input[type="radio"]');
+                    const planId = option.dataset.plan;
+
+                    // Check if this duration is already selected (toggle functionality)
+                    if (selectedDuration === radio.value) {
+                        // Unselect this duration
+                        option.classList.remove('selected');
+                        radio.checked = false;
                         selectedDuration = null;
-                        selectedDurationText = '-';
+                        selectedDurationText_value = '-';
                         selectedPrice = 0;
                     } else {
-                        // Select new duration
-                        selectedDuration = durationId;
-                        selectedDurationText = durationText;
-                        selectedPrice = price;
+                        if (planId && selectedPlan !== planId) {
+                            // Reset all selections first
+                            resetAllSelections();
+
+                            // Select the new plan
+                            selectPlan(planId);
+                        }
+
+                        // Reset all duration options' selected state
+                        durationOptions.forEach(opt => {
+                            opt.classList.remove('selected');
+                            const durationRadio = opt.querySelector('input[type="radio"]');
+                            if (durationRadio) {
+                                durationRadio.checked = false;
+                            }
+                        });
+
+                        // Select this option
+                        option.classList.add('selected');
+
+                        // Check the radio button
+                        radio.checked = true;
+
+                        // Store selected duration and price
+                        selectedDuration = radio.value;
+                        selectedPrice = parseInt(option.dataset.price);
+
+                        // Get and store the duration text
+                        selectedDurationText_value = getDurationText(option);
                     }
 
-                    updateVisualSelection();
+                    // Update button state
                     updateButtonState();
-                    updateLivewireState();
                 }
 
-                function clearDurationSelection() {
-                    selectedDuration = null;
-                    selectedDurationText = '-';
-                    selectedPrice = 0;
-                    durationCards.forEach(c => c.classList.remove('selected'));
-                }
+                closeConfirm.addEventListener('click', function() {
+                    confirmModal.classList.remove('active')
+                })
 
-                function updateVisualSelection() {
-                    // Update plan cards
-                    planCards.forEach(card => {
-                        const radio = card.querySelector('.plan-radio');
-                        if (card.dataset.planId === selectedPlan) {
-                            card.classList.add('selected');
-                            if (radio) radio.classList.add('selected');
-                        } else {
-                            card.classList.remove('selected');
-                            if (radio) radio.classList.remove('selected');
-                        }
+                // Confirm add to cart handler
+                confirmBtn.addEventListener('click', function() {
+                    // Hide confirmation modal
+                    confirmModal.classList.remove('active');
+
+                    // Set the data in Livewire component first
+                    Livewire.dispatch('set-cart-data', {
+                        detailId: selectedDuration,
+                        quantity: 1
                     });
 
-                    // Update duration cards
-                    durationCards.forEach(card => {
-                        if (card.dataset.duration === selectedDuration) {
-                            card.classList.add('selected');
-                        } else {
-                            card.classList.remove('selected');
-                        }
-                    });
-                }
+                    // Call Livewire addToCart method
+                    Livewire.dispatch('add-to-cart');
 
-                // Add event listeners
-                planCards.forEach(card => {
-                    card.addEventListener('click', function(e) {
-                        // Prevent event from bubbling to parent elements
-                        e.stopPropagation();
-                        
-                        const planId = this.dataset.planId;
-                        const planName = this.dataset.planName;
-                        handlePlanSelection(planId, planName);
-                    });
+                    addToCartBtn.classList.add('success-animation');
+                    setTimeout(() => {
+                        addToCartBtn.classList.remove('success-animation');
+                    }, 600);
+                    resetAllSelections();
+                    updateButtonState();
                 });
 
-                durationCards.forEach(card => {
-                    card.addEventListener('click', function(e) {
-                        // Prevent event from bubbling to parent elements
-                        e.stopPropagation();
-                        
-                        const durationId = this.dataset.duration;
-                        const durationText = this.dataset.durationText;
-                        const price = parseInt(this.dataset.price) || 0;
-                        const planId = this.dataset.plan;
-                        handleDurationSelection(durationId, durationText, price, planId);
-                    });
-                });
+                // Initialize any pre-selected options
+                const preSelectedPlan = document.querySelector('.plan-card.selected');
+                if (preSelectedPlan) {
+                    const radio = preSelectedPlan.querySelector('input[type="radio"]');
+                    selectedPlan = radio.value;
+                    selectedPlanText_value = preSelectedPlan.querySelector('label').textContent.trim();
+                }
+
+                const preSelectedDuration = document.querySelector('.duration-option.selected');
+                if (preSelectedDuration) {
+                    const radio = preSelectedDuration.querySelector('input[type="radio"]');
+                    selectedDuration = radio.value;
+                    selectedPrice = parseInt(preSelectedDuration.dataset.price);
+                    selectedDurationText_value = getDurationText(preSelectedDuration);
+                }
+
+                // Update button state on initial load
+                updateButtonState();
 
                 // Add to cart button
                 addToCartBtn.addEventListener('click', function() {
@@ -1015,82 +820,19 @@
 
                     // Update modal content
                     if (modalPlan && hasProductType) {
-                        modalPlan.textContent = selectedPlanText;
+                        modalPlan.textContent = selectedPlanText_value;
                     }
-                    modalDuration.textContent = selectedDurationText;
+
+                    modalDuration.textContent = (!isTopupProduct) ? selectedDurationText_value :
+                        selectedDurationText_value.trim().split(/\s+/)[0];
                     modalPrice.textContent = formatRupiah(selectedPrice);
+
+                    if (modalUnit) modalUnit.textContent = selectedUnitText_value;
 
                     // Show confirmation modal
                     confirmModal.classList.add('active');
                 });
-
-                // Modal event listeners
-                cancelBtn.addEventListener('click', function() {
-                    confirmModal.classList.remove('active');
-                });
-
-                confirmBtn.addEventListener('click', function() {
-                    // Hide confirmation modal
-                    confirmModal.classList.remove('active');
-
-                    // Add success animation to button
-                    addToCartBtn.classList.add('success-animation');
-                    setTimeout(() => {
-                        addToCartBtn.classList.remove('success-animation');
-                    }, 600);
-
-                    // Call Livewire method
-                    if (typeof @this !== 'undefined') {
-                        @this.call('addToCart').then(() => {
-                            // Show success modal
-                            setTimeout(() => {
-                                successModal.classList.add('active');
-                            }, 300);
-                        }).catch(error => {
-                            console.error('Error adding to cart:', error);
-                            alert('Failed to add item to cart. Please try again.');
-                        });
-                    } else {
-                        // Fallback if Livewire is not available
-                        setTimeout(() => {
-                            successModal.classList.add('active');
-                        }, 300);
-                    }
-                });
-
-                // Close modals when clicking outside
-                [confirmModal, successModal].forEach(modal => {
-                    modal.addEventListener('click', function(e) {
-                        if (e.target === this) {
-                            this.classList.remove('active');
-                        }
-                    });
-                });
-
-                // Close modals with Escape key
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        confirmModal.classList.remove('active');
-                        successModal.classList.remove('active');
-                    }
-                });
-
-                // Listen for Livewire events
-                if (typeof window.Livewire !== 'undefined') {
-                    window.addEventListener('show-success-modal', () => {
-                        setTimeout(() => {
-                            successModal.classList.add('active');
-                        }, 300);
-                    });
-                }
-
-                // Initialize
-                updateButtonState();
-                console.log('Product details initialized', {
-                    hasProductType,
-                    planCards: planCards.length,
-                    durationCards: durationCards.length
-                });
             });
-    </script>
-@endpush
+        </script>
+    @endpush
+@endif

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('topup_games', function (Blueprint $table) {
-            $table->id();
-            $table->integer('diamond');
-            $table->integer('price');
-            $table->timestamps();
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->json('customer_details')->nullable()->after('notes');
+            $table->enum('order_timing', ['now', 'later'])->default('now')->after('customer_details');
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('topup_games');
+        Schema::table('transactions', function (Blueprint $table) {
+            //
+        });
     }
 };

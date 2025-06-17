@@ -66,9 +66,9 @@ class ProductService
     {
         $query = "SELECT pd.id AS product_details_id, pd.duration, pd.price, pd.notes AS product_details_notes, 
                      p.id AS product_id, p.app_name, p.description AS product_description, 
-                     p.cover_img, p.notes AS product_notes, p.ready_stock,
+                     p.cover_img, p.notes AS product_notes, p.ready_stock, p.is_topup,
                      pc.title AS category, pt.type_name AS product_type_name, 
-                     pt.id AS product_type_id, pt.description AS product_type_description
+                     pt.id AS product_type_id, pt.description AS product_type_description, pt.unit
               FROM products p
               JOIN product_categories pc ON p.category_id = pc.id
               LEFT JOIN product_details pd ON p.id = pd.product_id AND pd.is_deleted = false
@@ -81,7 +81,6 @@ class ProductService
             return null;
         }
 
-        // Basic product data from first row
         $firstRow = $results[0];
         $data = [
             'id' => $firstRow->product_id,
@@ -92,6 +91,7 @@ class ProductService
             'ready_stock' => $firstRow->ready_stock,
             'notes' => $firstRow->product_notes,
             'have_product_type' => false,
+            'is_topup' => ($firstRow->is_topup ?? false) === 1,
             'plans' => [],
             'durations' => []
         ];
@@ -143,12 +143,17 @@ class ProductService
                 ->first();
 
             if (!$existingDuration) {
-                $plans[$planIndex]['durations'][] = [
+                $dataPlan = [
                     'id' => $row->product_details_id,
                     'duration' => $row->duration ?? 'No Duration',
                     'price' => $row->price,
-                    'notes' => $row->product_details_notes
+                    'notes' => $row->product_details_notes,
                 ];
+                // if is_topup true add key unit
+                if ($row->is_topup) {
+                    $dataPlan['unit'] = $row->unit ?? null;
+                }
+                $plans[$planIndex]['durations'][] = $dataPlan;
             }
         }
 
